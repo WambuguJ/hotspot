@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Coordinates </title>
+    <link rel="stylesheet" href="./hotspot.css">
+    <script type="module" >
+        import {innit, add_coods} from "./hotspots2.js";
+        //
+        // Wait for the page to load before adding the coordinates
+        window.onload = function() {
+            innit();
+            //
+        // Get the areas
+            const areas=document.querySelectorAll("map[name='image-map'] area");
+            add_coods(areas);
+        };
+        
+    </script>
+
+</head>
+
+<body>
+    <div class="hotspot"></div>
+    <div class="coords" >X: 0, Y: 0</div>
+    <!-- Image with linked map -->
+    <img src="balansys.png" alt="Example" width="100%"  usemap="#image-map">
+
+    <!-- Define the image map -->
+    <map name="image-map">
+        <area shape="circle"  data-vu="[10.633307271305707, 3.15955766192733]" alt="balansys" title="balansys">
+        <area shape="circle"  data-vu="[35.340109460516025, 2.6856240126382307]" alt="balansys" title="balansys">
+        <area shape="circle"  data-vu="[54.4175136825645, 2.6856240126382307]" alt="balansys" title="balansys">
+        <area shape="circle"  data-vu="[7.66223612197029, 22.11690363349131]" alt="balansys" title="balansys">
+        <area shape="circle"  data-vu="[7.8967943706020325, 38.2306477093207]" alt="balansys" title="balansys">
+        <area shape="circle"  data-vu="[54.182955433932754, 38.388625592417064]" alt="balansys" title="balansys">
+        <area shape="circle"  data-vu="[54.88663017982799, 55.60821484992101]" alt="balansys" title="balansys">
+    </map> 
+
+</body>
+</html>

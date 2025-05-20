@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Coordinates </title>
+    <style>
+        body, html{
+            height: 100%;
+            width: 100%;
+        }
+        .coords{
+            /* position the coors absolut so the dont take up space in the doc flow */
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: white;
+        }
+        /* Position thw hotspot coord nest to the screen coords */
+        .hotspot{
+            position: absolute;
+            left: 500px;
+            top: 0;
+            background-color: white;
+        }
+        area{
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="hotspot"></div>
+    <div class="coords" >X: 0, Y: 0</div>
+    <!-- Image with linked map -->
+    <img src="flame.png" alt="Example" width="100%"  usemap="#image-map">
+
+    <!-- Define the image map -->
+    <map name="image-map">
+        <area shape="circle"  data-vu="[49.022673964034404, 9.162717219589258]" alt="joan" title="My Name">
+        <area shape="circle"   data-vu="[79.67161845191556, 7.898894154818326]" alt="joan" title="Welcome">
+        <area shape="circle"   data-vu="[10.007818608287725, 24.170616113744074]" alt="joan" title="about me">
+        <area shape="circle"   data-vu="[11.267605633802818, 50.07898894154819]" alt="joan" title="Resume">
+        <area shape="circle"   data-vu="[59.89053948397185, 22.274881516587676]" alt="joan" title="Mutall work plan">
+        <area shape="circle"   data-vu="[66.92728694292416, 62.7172195892575]" alt="joan" title="My hobbies">
+        <area shape="circle"  data-vu="[14.386239249413604, 94.7867298578199]" alt="joan" title="Phone number">
+        <area shape="circle"   data-vu="[61.6106333072713, 94.62875197472354]" alt="joan" title="Gmail account">
+        <area shape="circle"   data-vu="[89.99218139171228, 94.7867298578199]" alt="joan" title="Linkedin">
+      </map> 
+
+    <script src="hotspots2.js"></script>
+
+</body>
+</html>

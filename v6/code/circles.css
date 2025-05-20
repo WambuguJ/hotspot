@@ -1,0 +1,14 @@
+/* General stylng of all the circles */
+.circle {
+    width: 55px;
+    height: 55px;
+    background-color: rgba(255, 0, 0, 0.916);
+    /* Create the circular shape by having the border radius to 50% */
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+.circle:hover{
+    transform: translate(-50%, -50%) scale(1.2);
+    transition: transform 0.3s ease-in;
+}

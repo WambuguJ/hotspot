@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Coordinates </title>
+    <style>
+        .coords{
+            /* position the coors absolut so the dont take up space in the doc flow */
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: white;
+        }
+        /* Position thw hotspot coord nest to the screen coords */
+        .hotspot{
+            position: absolute;
+            left: 400px;
+            top: 0;
+            background-color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="hotspot"></div>
+    <div class="coords" >X: 0, Y: 0</div>
+    <!-- Image with linked map -->
+    <img src="flame.png" alt="Example" width="100%" height="100%"  usemap="#image-map">
+
+    <!-- Define the image map -->
+    <map name="image-map">
+      <area shape="circle" coords="621, 50, 15" data-vu="[49.022673964034404, 9.162717219589258]" alt="joan" title="My Name">
+      <area shape="circle" coords="1012, 43, 15"  data-vu="[79.67161845191556, 7.898894154818326]" alt="joan" title="Welcome">
+      <area shape="circle" coords="116, 145, 15"  data-vu="[10.007818608287725, 24.170616113744074]" alt="joan" title="about me">
+      <area shape="circle" coords="132, 311, 15"  data-vu="[10.007818608287725, 24.170616113744074]" alt="joan" title="Resume">
+      <area shape="circle" coords="758, 135, 15"  data-vu="[59.89053948397185, 22.274881516587676]" alt="joan" title="Mutall work plan">
+      <area shape="circle" coords="848, 390, 15"  data-vu="[66.92728694292416, 62.7172195892575]" alt="joan" title="My hobbies">
+      <area shape="circle" coords="174, 591, 15"  data-vu="[14.386239249413604, 94.7867298578199]" alt="joan" title="Phone number">
+      <area shape="circle" coords="787, 601, 15"  data-vu="[61.6106333072713, 94.62875197472354]" alt="joan" title="Gmail account">
+      <area shape="circle" coords="1152, 601, 15"  data-vu="[89.99218139171228, 94.7867298578199]" alt="joan" title="Linkedin">
+    </map> 
+
+    <script>
+        // Select the div using querySelector (class selector)
+        const coods_div = document.querySelector('.coords');
+
+        // Get the hotspot div
+        const hot=document.querySelector('.hotspot');
+
+        // Add a 'mousemove' event listener to the document
+        document.addEventListener('mousemove', function(event) {
+            
+            const [vw, vh]=getv()
+
+            // Update the coordinates in the div
+            coods_div.textContent = `vw: ${vw}, vh: ${vh}`;
+
+          
+        });
+        //
+        document.addEventListener('click', function(event){
+            const [vw, vh]=getv(event);
+            hot.textContent=`[${vw}, ${vh}]`;
+            alert(`[${vw}, ${vh}]`)
+        })
+        //
+        // Get the image
+        const img = document.querySelector('img'); 
+
+        function getv(e){
+            // Get the X and Y coordinates of the mouse
+            const x = event.clientX;
+            const y = event.clientY;
+
+            const vw = x/window.innerWidth*100; 
+            const vh = y/window.innerHeight*100;
+
+            return [vw,vh]
+        }
+        //
+        // To convert view units to pixels
+        function getp(vu_array){
+            //
+            //
+            const vw= vu_array[0];
+            const vh= vu_array[1];
+            //
+            //
+            const x =vw*window.innerWidth*100;
+            const y = vh*window.innerHeight*100;
+
+            return[x, y]
+        }
+
+        const areas=document.querySelectorAll("map[name='image-map'] area");
+        //
+        //
+        function add_coods(areas){
+            areas.forEach((area)=>{
+               const v=JSON.parse(area.dataset.vu)
+               const pix=getp(v)
+               area.coords= `${pix[0]},${pix[1]}`
+            })
+        }
+        add_coods(areas)
+    </script>
+
+</body>
+</html>
